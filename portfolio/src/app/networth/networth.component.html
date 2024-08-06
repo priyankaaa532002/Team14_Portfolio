@@ -1,0 +1,10 @@
+<div>
+    <h1>Net Worth</h1>
+    <div *ngIf="networth">
+      <p>Net Worth: {{ networth | json }}</p>
+    </div>
+    <div *ngIf="!networth">
+      <p>Loading net worth...</p>
+    </div>
+  </div>
+  

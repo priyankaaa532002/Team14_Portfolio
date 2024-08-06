@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,6 +10,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { NewWatchlistComponent } from './new-watchlist/new-watchlist.component';
 import { PracComponent } from './new-watchlist/prac/prac.component';
+import { BuySellComponent } from './buy-sell/buy-sell.component';
+import { NetworthComponent } from './networth/networth.component';
 
 @NgModule({
   declarations: [
@@ -16,13 +19,16 @@ import { PracComponent } from './new-watchlist/prac/prac.component';
     WatchlistComponent,
     HoldingsComponent,
     NewWatchlistComponent,
-    PracComponent
+    PracComponent,
+    BuySellComponent,
+    NetworthComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    HighchartsChartModule
+    HighchartsChartModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
