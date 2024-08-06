@@ -6,16 +6,17 @@ import { AppComponent } from './app.component';
 import { WatchlistComponent } from './watchlist/watchlist.component';
 import { HoldingsComponent } from './holdings/holdings.component';
 import { HttpClientModule } from '@angular/common/http';
-// import { StocksChartComponent } from './stocks-chart/stocks-chart.component';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { NewWatchlistComponent } from './new-watchlist/new-watchlist.component';
+import { PracComponent } from './new-watchlist/prac/prac.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     WatchlistComponent,
     HoldingsComponent,
-    NewWatchlistComponent
+    NewWatchlistComponent,
+    PracComponent
   ],
   imports: [
     BrowserModule,
