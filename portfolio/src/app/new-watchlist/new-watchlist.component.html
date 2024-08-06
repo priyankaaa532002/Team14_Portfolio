@@ -1,0 +1,59 @@
+<div>
+    <h1>Historical Stock Data</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Ticker</th>
+          <th>Date</th>
+          <th>Open</th>
+          <th>High</th>
+          <th>Low</th>
+          <th>Close</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ticker of tickers">
+          <td>{{ ticker }}</td>
+          <td>{{ recentData[ticker]?.Date }}</td>
+          <td>{{ recentData[ticker]?.Open }}</td>
+          <td>{{ recentData[ticker]?.High }}</td>
+          <td>{{ recentData[ticker]?.Low }}</td>
+          <td>{{ recentData[ticker]?.Close }}</td>
+          <td>
+            <button (click)="toggleHistoricalData(ticker)">
+              {{ showHistoricalData[ticker] ? 'Hide' : 'Show' }} Historical Data
+            </button>
+          </td>
+        </tr>
+        <tr *ngFor="let ticker of tickers">
+          <ng-container *ngIf="showHistoricalData[ticker]">
+            <td colspan="7">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Open</th>
+                    <th>High</th>
+                    <th>Low</th>
+                    <th>Close</th>
+                    <th>Volume</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let data of stockData[ticker]">
+                    <td>{{ data.Date }}</td>
+                    <td>{{ data.Open }}</td>
+                    <td>{{ data.High }}</td>
+                    <td>{{ data.Low }}</td>
+                    <td>{{ data.Close }}</td>
+                    <td>{{ data.Volume }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </ng-container>
+        </tr>
+      </tbody>
+    </table>
+  </div>

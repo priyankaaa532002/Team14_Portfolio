@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class HoldingServiceService {
 
-  apiUrl = 'http://localhost:5000/api/holdings/holdings';
+  apiUrl = 'http://localhost:5000/holdings/';
 
   constructor(private http: HttpClient) { }
 
