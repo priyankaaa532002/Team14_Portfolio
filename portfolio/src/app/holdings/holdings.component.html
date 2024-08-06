@@ -1,0 +1,21 @@
+<div>
+    <h1>Holdings</h1>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>Holding ID</th>
+          <th>Ticker</th>
+          <th>Quantity</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let holding of holdings">
+          <td>{{ holding.holding_id }}</td>
+          <td>{{ holding.ticker }}</td>
+          <td>{{ holding.quantity }}</td>
+          <td>{{ holding.price | currency }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

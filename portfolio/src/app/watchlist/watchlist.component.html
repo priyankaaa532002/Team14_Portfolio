@@ -1,0 +1,66 @@
+<div>
+    <h1>Stock Watchlist</h1>
+    <button (click)="refreshData()">Refresh Data</button>
+  
+    <!-- Main Watchlist Table -->
+    <table border="1">
+      <thead>
+        <tr>
+          <th>Company Name</th>
+          <th>Symbol</th>
+          <th>Most Recent Date</th>
+          <th>Open</th>
+          <th>High</th>
+          <th>Low</th>
+          <th>Close</th>
+          <th>Volume</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Iterate over each stock in the stocks array -->
+        <ng-container *ngFor="let stock of stocks">
+          <tr (click)="selectStock(stock)">
+            <td>{{ stock.quote.companyName }}</td>
+            <td>{{ stock.quote.symbol }}</td>
+            <td>{{ getMostRecentData(stock)?.date || 'N/A' }}</td>
+            <td>{{ getMostRecentData(stock)?.open | number:'1.2-2' || 'N/A' }}</td>
+            <td>{{ getMostRecentData(stock)?.high | number:'1.2-2' || 'N/A' }}</td>
+            <td>{{ getMostRecentData(stock)?.low | number:'1.2-2' || 'N/A' }}</td>
+            <td>{{ getMostRecentData(stock)?.close | number:'1.2-2' || 'N/A' }}</td>
+            <td>{{ getMostRecentData(stock)?.volume | number:'1.0-0' || 'N/A' }}</td>
+          </tr>
+          <!-- Dropdown section for historical data -->
+          <tr *ngIf="selectedStock === stock">
+            <td colspan="8">
+              <div class="historical-data">
+                <h2>Historical Data for {{ selectedStock.quote.companyName }} ({{ selectedStock.quote.symbol }})</h2>
+                <table border="1">
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>Open</th>
+                      <th>High</th>
+                      <th>Low</th>
+                      <th>Close</th>
+                      <th>Volume</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- Iterate over historicalData of the selectedStock -->
+                    <tr *ngFor="let data of selectedStock.historicalData">
+                      <td>{{ data.date }}</td>
+                      <td>{{ data.open | number:'1.2-2' }}</td>
+                      <td>{{ data.high | number:'1.2-2' }}</td>
+                      <td>{{ data.low | number:'1.2-2' }}</td>
+                      <td>{{ data.close | number:'1.2-2' }}</td>
+                      <td>{{ data.volume | number:'1.0-0' }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
