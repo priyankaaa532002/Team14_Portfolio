@@ -47,8 +47,8 @@ export class NewWatchlistComponent implements OnInit {
     // this.tickers.forEach(ticker => {
     //   this.showHistoricalData[ticker] = false;
     // });
-    const startDate = '2023-12-01';
-    const endDate = '2023-12-31';
+    const startDate = '2022-12-01';
+    const endDate = '2024-08-05';
     this.tickers.forEach(ticker => {
           this.stockDataService.getStockData(ticker, startDate, endDate).subscribe(data => {
             this.stockData[ticker] = data;
@@ -58,6 +58,16 @@ export class NewWatchlistComponent implements OnInit {
             this.showHistoricalData[ticker] = false;
           });
         });
+  }
+
+  openModal(ticker: string): void {
+    this.selectedTicker = ticker;
+    this.showHistoricalData[ticker] = true;
+  }
+
+  closeModal(): void {
+    this.showHistoricalData[this.selectedTicker!] = false;
+    this.selectedTicker = "";
   }
 
   toggleHistoricalData(ticker: string): void {

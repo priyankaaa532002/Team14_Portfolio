@@ -1,0 +1,19 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    height: 100vh; /* This will make the container take the full height of the viewport */
+  }
+  
+  .column {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  .center-column {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  
