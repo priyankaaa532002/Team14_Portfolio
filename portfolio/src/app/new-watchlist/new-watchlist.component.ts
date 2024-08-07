@@ -12,13 +12,19 @@ interface StockData {
   Volume: number;
 }
 
+
+  
+interface Ticker {
+  ticker: string;
+}
+
 @Component({
   selector: 'app-new-watchlist',
   templateUrl: './new-watchlist.component.html',
   styleUrl: './new-watchlist.component.css'
 })
 export class NewWatchlistComponent implements OnInit {
-  tickers: string[] = ['AAPL', 'MSFT', 'GOOGL','IBM','NVDA','LUMN','UBER','HOOD','GME','TENK','RIVN'];
+  tickers: string[] = [];
   stockData: { [ticker: string]: StockData[] } = {};
   recentData: { [ticker: string]: StockData } = {};
   showHistoricalData: { [ticker: string]: boolean } = {};
@@ -26,38 +32,34 @@ export class NewWatchlistComponent implements OnInit {
 
   constructor(private stockDataService: NewWatchlistServiceService) { }
   // ngOnInit(): void {
-  //   const startDate = '2023-12-01';
-  //   const endDate = '2023-12-31';
-
+  //   const startDate = '2022-12-01';
+  //   const endDate = '2024-08-05';
   //   this.tickers.forEach(ticker => {
-  //     this.stockDataService.getStockData(ticker, startDate, endDate).subscribe(data => {
-  //       this.stockData[ticker] = data;
-  //       if (data.length > 0) {
-  //         this.recentData[ticker] = data[data.length - 1];
-  //       }
-  //       this.showHistoricalData[ticker] = false;
-  //     });
-  //   });
+  //         this.stockDataService.getStockData(ticker, startDate, endDate).subscribe(data => {
+  //           this.stockData[ticker] = data;
+  //           if (data.length > 0) {
+  //             this.recentData[ticker] = data[data.length - 1];
+  //           }
+  //           this.showHistoricalData[ticker] = false;
+  //         });
+  //       });
   // }
 
-  // toggleHistoricalData(ticker: string): void {
-  //   this.showHistoricalData[ticker] = !this.showHistoricalData[ticker];
-  // }
   ngOnInit(): void {
-    // this.tickers.forEach(ticker => {
-    //   this.showHistoricalData[ticker] = false;
-    // });
-    const startDate = '2022-12-01';
-    const endDate = '2024-08-05';
-    this.tickers.forEach(ticker => {
-          this.stockDataService.getStockData(ticker, startDate, endDate).subscribe(data => {
-            this.stockData[ticker] = data;
-            if (data.length > 0) {
-              this.recentData[ticker] = data[data.length - 1];
-            }
-            this.showHistoricalData[ticker] = false;
-          });
+    this.stockDataService.getTickers().subscribe(tickerList => {
+      this.tickers = tickerList.map(t => t.ticker);
+      const startDate = '2022-12-01';
+      const endDate = '2024-08-05';
+      this.tickers.forEach(ticker => {
+        this.stockDataService.getStockData(ticker, startDate, endDate).subscribe(data => {
+          this.stockData[ticker] = data;
+          if (data.length > 0) {
+            this.recentData[ticker] = data[data.length - 1];
+          }
+          this.showHistoricalData[ticker] = false;
         });
+      });
+    });
   }
 
   openModal(ticker: string): void {

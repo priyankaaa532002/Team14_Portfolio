@@ -1,0 +1,45 @@
+/* holdings.component.css */
+.ng-container {
+    font-family: 'Montserrat', sans-serif;
+    padding: 20px;
+  }
+  
+  table.holdings-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+
+  p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 32px;
+  }
+  
+  th, td {
+    padding: 10px 20px; /* Add enough space between columns */
+    text-align: left;
+    border: none; /* Remove borders */
+  }
+  
+  th {
+    background-color: #f2f2f2; /* Light background for headers */
+    font-weight: bold;
+  }
+  
+  td {
+    background-color: #fff; /* White background for cells */
+  }
+  
+  tr:nth-child(even) td {
+    background-color: #f9f9f9; /* Slightly different background for even rows */
+  }
+  
+  h1 {
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 10px;
+  }
+  
+  .btn {
+    margin-bottom: 20px;
+  }
+  

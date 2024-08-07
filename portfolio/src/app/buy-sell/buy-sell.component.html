@@ -1,9 +1,8 @@
-<div class="buy-sell-buttons">
+<!-- <div class="buy-sell-buttons">
     <button class="btn btn-success" (click)="onBuy()">Buy</button>
     <button class="btn btn-danger" (click)="onSell()">Sell</button>
   </div>
   
-  <!-- Buy Form -->
   <div *ngIf="showBuyForm" class="buy-form">
     <h3>Buy Stock</h3>
     <form (ngSubmit)="onBuyConfirm()">
@@ -24,7 +23,6 @@
     </form>
   </div>
   
-  <!-- Sell Form -->
   <div *ngIf="showSellForm" class="sell-form">
     <h3>Sell Stock</h3>
     <form (ngSubmit)="onSellConfirm()">
@@ -43,4 +41,58 @@
       <button type="submit" class="btn btn-primary">Submit</button>
       <button type="button" class="btn btn-secondary" (click)="onCancel()">Cancel</button>
     </form>
+  </div> -->
+
+  <!-- buy-sell.component.html -->
+<div class="buy-sell-buttons">
+  <button class="btn btn-success" (click)="showBuyModal()">BUY</button>
+  <button class="btn btn-danger" (click)="showSellModal()">SELL</button>
+</div>
+
+<!-- Buy Modal -->
+<div *ngIf="showBuyForm" class="modal">
+  <div class="modal-content">
+    <span class="close" (click)="closeModal()">&times;</span>
+    <h3>Buy Stock</h3>
+    <form (ngSubmit)="onBuyConfirm()">
+      <div class="form-group">
+        <label for="ticker">Ticker:</label>
+        <input type="text" id="ticker" [(ngModel)]="ticker" name="ticker" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" [(ngModel)]="quantity" name="quantity" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="price">Price:</label>
+        <input type="number" id="price" [(ngModel)]="price" name="price" class="form-control" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Confirm</button>
+      <button type="button" class="btn btn-secondary" (click)="closeModal()">Cancel</button>
+    </form>
   </div>
+</div>
+
+<!-- Sell Modal -->
+<div *ngIf="showSellForm" class="modal">
+  <div class="modal-content">
+    <span class="close" (click)="closeModal()">&times;</span>
+    <h3>Sell Stock</h3>
+    <form (ngSubmit)="onSellConfirm()">
+      <div class="form-group">
+        <label for="ticker">Ticker:</label>
+        <input type="text" id="ticker" [(ngModel)]="ticker" name="ticker" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" [(ngModel)]="quantity" name="quantity" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="price">Price:</label>
+        <input type="number" id="price" [(ngModel)]="price" name="price" class="form-control" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="button" class="btn btn-secondary" (click)="closeModal()">Cancel</button>
+    </form>
+  </div>
+</div>

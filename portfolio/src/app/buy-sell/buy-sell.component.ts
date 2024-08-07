@@ -27,6 +27,22 @@ export class BuySellComponent {
     this.showBuyForm = false;
   }
 
+  showBuyModal(): void {
+    this.showBuyForm = true;
+    this.showSellForm = false;
+  }
+
+  showSellModal(): void {
+    this.showBuyForm = false;
+    this.showSellForm = true;
+  }
+
+  closeModal(): void {
+    this.showBuyForm = false;
+    this.showSellForm = false;
+  }
+
+
   onBuyConfirm(): void {
     const data = {
       ticker: this.ticker,
@@ -45,6 +61,7 @@ export class BuySellComponent {
         alert('Failed to submit buy order.');
       }
     );
+    this.closeModal(); 
   }
 
   onSellConfirm(): void {
@@ -65,10 +82,12 @@ export class BuySellComponent {
         alert('Failed to submit sell order.');
       }
     );
+    this.closeModal(); 
   }
 
   onCancel(): void {
     this.resetForms();
+    this.closeModal(); 
   }
 
   private resetForms(): void {
