@@ -18,6 +18,14 @@ interface Ticker {
   ticker: string;
 }
 
+interface TickerInfo {
+  info: {
+    "52WeekChange": number;
+    "longName": string;
+    "currentPrice": number;
+  };
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -25,6 +33,7 @@ interface Ticker {
 export class NewWatchlistServiceService {
   private apiUrl = 'http://localhost:5000/actions/historical_data';
   private tickersUrl = 'http://localhost:5000/watchlist';
+  private tickerInfoUrl = 'http://localhost:5000/actions/get_ticker';
 
   constructor(private http: HttpClient) { }
 
@@ -35,5 +44,9 @@ export class NewWatchlistServiceService {
 
   getTickers(): Observable<Ticker[]> {
     return this.http.get<Ticker[]>(this.tickersUrl);
+  }
+  getTickerInfo(ticker: string): Observable<TickerInfo> {
+    const url = `${this.tickerInfoUrl}?ticker=${ticker}`;
+    return this.http.get<TickerInfo>(url);
   }
 }

@@ -18,6 +18,14 @@ interface Ticker {
   ticker: string;
 }
 
+interface TickerInfo {
+  info: {
+    "52WeekChange": number;
+    "longName": string;
+    "currentPrice": number;
+  };
+}
+
 @Component({
   selector: 'app-new-watchlist',
   templateUrl: './new-watchlist.component.html',
@@ -29,6 +37,7 @@ export class NewWatchlistComponent implements OnInit {
   recentData: { [ticker: string]: StockData } = {};
   showHistoricalData: { [ticker: string]: boolean } = {};
   selectedTicker: string = '';
+  tickerInfos: { [ticker: string]: TickerInfo } = {};
 
   constructor(private stockDataService: NewWatchlistServiceService) { }
   // ngOnInit(): void {
@@ -57,6 +66,11 @@ export class NewWatchlistComponent implements OnInit {
             this.recentData[ticker] = data[data.length - 1];
           }
           this.showHistoricalData[ticker] = false;
+        });
+
+        this.stockDataService.getTickerInfo(ticker).subscribe(info => {
+          this.tickerInfos[ticker] = info;
+          console.log(this.tickerInfos[ticker]['info']['longName'])
         });
       });
     });

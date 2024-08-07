@@ -64,11 +64,16 @@
       <thead>
         <tr>
           <th>Ticker</th>
+          <th>Long Name</th>
+          <th>Current Price</th>
           <!-- <th>Date</th> -->
           <th>Open</th>
           <th>High</th>
           <th>Low</th>
           <th>Close</th>
+          
+          <th>52 Week Change</th>
+         
           <th></th>
         </tr>
       </thead>
@@ -76,18 +81,15 @@
         <tr *ngFor="let ticker of tickers">
           <td>{{ ticker }}</td>
           <!-- <td>{{ recentData[ticker]?.Date | date:'dd MMM yyyy' }}</td> -->
+          <td>{{ tickerInfos[ticker]['info']['longName'] || 'N/A' }}</td>
+          <td>{{ tickerInfos[ticker]['info']['currentPrice'] | currency:'USD' || 'N/A' }}</td>
           <td>{{ recentData[ticker]?.Open | number:'1.2-2' }}</td>
           <td>{{ recentData[ticker]?.High | number:'1.2-2' }}</td>
           <td>{{ recentData[ticker]?.Low | number:'1.2-2' }}</td>
           <td>{{ recentData[ticker]?.Close | number:'1.2-2' }}</td>
-          <!-- <td>
-            <button (click)="toggleHistoricalData(ticker)">
-              {{ showHistoricalData[ticker] ? 'Hide' : 'View' }} Chart
-            </button>
-          </td> -->
-          <!-- <td>
-            <i class="fas fa-eye" (click)="toggleHistoricalData(ticker)" [title]="showHistoricalData[ticker] ? 'Hide Chart' : 'View Chart'"></i>
-          </td> -->
+         
+          <td>{{ tickerInfos[ticker]['info']["52WeekChange"] | percent:'1.0-2' || 'N/A' }}</td>
+          
           <td>
             <i class="fas fa-eye" (click)="openModal(ticker)" [title]="showHistoricalData[ticker] ? 'Hide Chart' : 'View Chart'"></i>
           </td>
@@ -103,10 +105,4 @@
         ></app-prac>
       </div>
     </div>
-    <!-- <div *ngIf="selectedTicker && showHistoricalData[selectedTicker]">
-      <app-prac
-        [ticker]="selectedTicker"
-        [stockData]="stockData[selectedTicker]"
-      ></app-prac>
-    </div> -->
   </div>
