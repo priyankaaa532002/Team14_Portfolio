@@ -60,6 +60,41 @@
 
   <div>
     <p>Watchlist</p>
+    <div class="search-container">
+      <input
+        type="text"
+        placeholder="Search by long name"
+        (input)="onSearch2($event)"
+        [(ngModel)]="searchQuery"
+        (focus)="showDropdown = true"
+        (blur)="hideDropdown()"
+      />
+    
+      <!-- Dropdown for displaying search results -->
+      <div *ngIf="showDropdown && displayedTickers.length > 0" class="dropdown">
+        <div
+          *ngFor="let ticker of displayedTickers"
+          class="dropdown-item"
+          (mousedown)="onTickerSelect(ticker)"
+        >
+          {{ ticker }}
+        </div>
+      </div>
+    </div>
+    <!-- <input type="text" placeholder="Search by long name" (input)="onSearch2($event)"> -->
+    <!-- <select *ngIf="displayedTickers.length > 0" (change)="onTickerSelect($event)">
+      <option *ngFor="let ticker of displayedTickers" [value]="ticker">
+        {{ ticker }}
+      </option>
+    </select> -->
+    <!-- <input type="search"> -->
+    <!-- <div class="dropdown" *ngIf="displayedTickers.length > 0">
+      <ul>
+        <li *ngFor="let ticker of displayedTickers" (click)="onTickerSelect(ticker)">
+          {{ ticker }}
+        </li>
+      </ul>
+    </div> -->
     <table>
       <thead>
         <tr>
