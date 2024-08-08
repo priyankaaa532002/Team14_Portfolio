@@ -1,27 +1,29 @@
+div {
+  margin: 0;
+  padding: 0;
+}
+
+.table-container {
+  max-height: 77vh; 
+  overflow-y: auto; 
+  display: block;
+}
+
 table {
-    width: 100%;
-    border-collapse: collapse;
-    font-family: 'Montserrat', sans-serif;
-    table-layout: auto;
-  }
-  
-  th, td {
-    padding: 5px 15px; /* Increase the padding for more space between columns */
-    text-align: left;
-  }
-  
-  th {
-    background-color: #f2f2f2;
-  }
-  
-  td {
-    border: none;
-  }
-  
-  td:first-child {
-    font-weight: bold;
-  }
-  
+  width: 100%; 
+  border-collapse: collapse; 
+}
+
+thead th, tbody td {
+  padding: 8px; 
+  border-bottom: 1px solid #ddd; 
+}
+
+thead th {
+  background-color: #f4f4f4; 
+}
+
+
   i.fas.fa-eye {
     cursor: pointer;
     color: #007bff;
@@ -35,10 +37,6 @@ table {
   p {
     font-family: 'Montserrat', sans-serif;
     font-size: 32px;
-  }
-  
-  div {
-    margin: 20px;
   }
   
   /* Modal styles */

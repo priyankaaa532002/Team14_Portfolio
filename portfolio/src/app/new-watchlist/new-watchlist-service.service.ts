@@ -31,6 +31,7 @@ interface SearchResult {
   longName: string;
 }
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -38,6 +39,7 @@ interface SearchResult {
 export class NewWatchlistServiceService {
   private apiUrl = 'http://localhost:5000/actions/historical_data';
   private tickersUrl = 'http://localhost:5000/watchlist';
+  private tickersPost = 'http://localhost:5000/watchlist/put';
   private tickerInfoUrl = 'http://localhost:5000/actions/get_ticker';
   private searchUrl = 'http://localhost:5000/actions/search_ticker';
 
@@ -59,5 +61,21 @@ export class NewWatchlistServiceService {
   searchTickers(query: string): Observable<SearchResult[]> {
     const url = `${this.searchUrl}?query=${query}`;
     return this.http.get<SearchResult[]>(url);
+  }
+
+  // addTickerToWatchlist(data : Add): Observable<any> {
+  //   // const url = this.tickersUrl;
+    
+  //   // console.log(this.http.post(url,data));
+  //   // return this.http.post(url,data);
+  //   // return this.http.post<any>(this.tickersUrl,data);
+  // }
+  addTickerToWatchlist(ticker: string): Observable<any> {
+    const data = {
+      "ticker" : ticker
+    }
+    const url = this.tickersPost;
+    // console.log(data);
+    return this.http.post<any>(url,data);
   }
 }

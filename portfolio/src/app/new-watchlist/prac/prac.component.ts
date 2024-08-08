@@ -138,6 +138,9 @@ export class PracComponent implements OnInit {
     ]);
 
     this.chartOptions = {
+      title:{
+        text : 'Historical Data'
+      },
       xAxis: {
         type: 'datetime' // Ensure xAxis is a datetime axis
       },

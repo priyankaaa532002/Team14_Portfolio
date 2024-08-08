@@ -1,19 +1,24 @@
+html, body {
+  margin: 0;
+  padding: 0; 
+}
+
+
 .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    height: 100vh; /* This will make the container take the full height of the viewport */
-  }
-  
-  .column {
-    flex: 1;
-    padding: 20px;
-  }
-  
-  .center-column {
-    flex: 2;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-  }
-  
+  background-color: #f1f2f6;
+  display: flex;
+  justify-content: space-between;
+  /* padding: 20px;  */
+}
+.column {
+  background-color: #ffffff; 
+  border-radius: 8px; 
+  padding: 15px;
+  margin: 10px; 
+  flex: 1;
+}
+
+
+.column {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}

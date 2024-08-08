@@ -14,9 +14,7 @@ interface StockData {
 
 
   
-interface Ticker {
-  ticker: string;
-}
+
 
 interface TickerInfo {
   info: {
@@ -31,6 +29,8 @@ interface SearchResult {
   longName: string;
 }
 
+
+
 @Component({
   selector: 'app-new-watchlist',
   templateUrl: './new-watchlist.component.html',
@@ -43,9 +43,11 @@ export class NewWatchlistComponent implements OnInit {
   showHistoricalData: { [ticker: string]: boolean } = {};
   selectedTicker: string = '';
   tickerInfos: { [ticker: string]: TickerInfo } = {};
-  displayedTickers: string[] = [];
+  displayedTickers: SearchResult[] = [];
+  // displayed:string[]=[];
   searchQuery: string = '';
   showDropdown: boolean = false;
+  // ticker: string = '';
 
   constructor(private stockDataService: NewWatchlistServiceService) { }
   // ngOnInit(): void {
@@ -95,8 +97,27 @@ export class NewWatchlistComponent implements OnInit {
   
 onTickerSelect(ticker: string): void {
   this.searchQuery = ticker;
-  this.openModal(ticker);
-  this.showDropdown = false;
+  // this.openModal(ticker);
+  // this.showDropdown = false;
+}
+
+addTicker(ticker:string): void {
+  console.log(ticker)
+  this.stockDataService.addTickerToWatchlist(ticker).subscribe(
+    response => {
+      console.log('Ticker added to watchlist', response);
+      // Optionally show a confirmation message or update the UI
+      alert(`Ticker ${ticker} added to watchlist.`);
+    },
+    error => {
+      console.error('Error adding ticker to watchlist', error);
+      // Optionally show an error message
+      alert('Failed to add ticker to watchlist.');
+    }
+  );
+  // const data = {
+  //   "ticker" : this.ticker
+  // }
 }
 
 hideDropdown(): void {
@@ -127,7 +148,8 @@ hideDropdown(): void {
     this.searchQuery = query;
     if (query && query.trim()) {
       this.stockDataService.searchTickers(query).subscribe(results => {
-        this.displayedTickers = results.map(result => result.longName);
+        this.displayedTickers = results.map(result => result);
+        // this.displayed=results.map(result=>result.ticker);
         this.showDropdown = this.displayedTickers.length > 0;
       });
     } else {

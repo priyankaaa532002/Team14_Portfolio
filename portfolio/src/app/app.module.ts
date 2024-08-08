@@ -12,6 +12,8 @@ import { NewWatchlistComponent } from './new-watchlist/new-watchlist.component';
 import { PracComponent } from './new-watchlist/prac/prac.component';
 import { BuySellComponent } from './buy-sell/buy-sell.component';
 import { NetworthComponent } from './networth/networth.component';
+import { PracticeComponent } from './practice/practice.component';
+
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { NetworthComponent } from './networth/networth.component';
     NewWatchlistComponent,
     PracComponent,
     BuySellComponent,
-    NetworthComponent
+    NetworthComponent,
+    PracticeComponent,
+    
   ],
   imports: [
     BrowserModule,
