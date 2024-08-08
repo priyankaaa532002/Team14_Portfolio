@@ -13,6 +13,9 @@ import { PracComponent } from './new-watchlist/prac/prac.component';
 import { BuySellComponent } from './buy-sell/buy-sell.component';
 import { NetworthComponent } from './networth/networth.component';
 import { PracticeComponent } from './practice/practice.component';
+import { BaseChartDirective } from 'ng2-charts';
+import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
+import { LineChartComponent } from './line-chart/line-chart.component';
 
 
 @NgModule({
@@ -25,16 +28,17 @@ import { PracticeComponent } from './practice/practice.component';
     BuySellComponent,
     NetworthComponent,
     PracticeComponent,
-    
+    LineChartComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     HighchartsChartModule,
-    FormsModule
+    FormsModule,
+    BaseChartDirective
   ],
-  providers: [],
+  providers: [provideCharts(withDefaultRegisterables())],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

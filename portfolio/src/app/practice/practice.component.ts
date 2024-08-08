@@ -1,30 +1,35 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PrserviceService } from './prservice.service';
+import { ChartOptions } from 'chart.js';
 
 @Component({
   selector: 'app-practice',
   templateUrl: './practice.component.html',
   styleUrl: './practice.component.css'
 })
-export class PracticeComponent {
-  constructor(private PracticeService :PrserviceService){}
-  add(): void {
-    // console.log(ticker)
-    this.PracticeService.addTickerToWatchlist().subscribe(
-      response => {
-        console.log('Ticker added to watchlist', response);
-        // Optionally show a confirmation message or update the UI
-        alert(`Ticker  added to watchlist.`);
-      },
-      error => {
-        console.error('Error adding ticker to watchlist', error);
-        // Optionally show an error message
-        alert('Failed to add ticker to watchlist.');
-      }
-    );
-    // const data = {
-    //   "ticker" : this.ticker
-    // }
+export class PracticeComponent implements OnInit{
+  title = 'ng2-charts-demo';
+  pieChartLabels: string[] = [];
+  pieChartDatasets: { data: number[] }[] = [];
+
+  public pieChartOptions: ChartOptions<'pie'> = {
+    responsive: false,
+  };
+  
+  public pieChartLegend = true;
+  public pieChartPlugins = [];
+
+  constructor(private prservice : PrserviceService) {
+  }
+  ngOnInit(): void {
+    this.prservice.getHoldings().subscribe(data => {
+      this.processData(data);
+    });
   }
 
+  processData(data: any[]): void {
+    // Extract tickers and quantities
+    this.pieChartLabels = data.map(item => item.ticker);
+    this.pieChartDatasets = [{ data: data.map(item => item.quantity) }];
+  }
 }

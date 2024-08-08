@@ -150,6 +150,7 @@ hideDropdown(): void {
       this.stockDataService.searchTickers(query).subscribe(results => {
         this.displayedTickers = results.map(result => result);
         // this.displayed=results.map(result=>result.ticker);
+        console.log(this.displayedTickers)
         this.showDropdown = this.displayedTickers.length > 0;
       });
     } else {

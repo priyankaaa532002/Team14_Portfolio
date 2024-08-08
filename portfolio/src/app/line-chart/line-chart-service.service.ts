@@ -5,13 +5,13 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class PrserviceService {
-  private apiUrl = 'http://localhost:5000/holdings/'; 
+export class LineChartServiceService {
+  private apiUrl = 'http://localhost:5000/transactions/cumulative_values'; 
 
   constructor(private http: HttpClient) { }
 
-  getHoldings(): Observable<any[]> {
+  getCumulativeValues(): Observable<any[]> {
+    // console.log(this.apiUrl);
     return this.http.get<any[]>(this.apiUrl);
   }
-  
 }

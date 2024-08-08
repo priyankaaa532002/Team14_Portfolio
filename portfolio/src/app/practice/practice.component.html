@@ -1,2 +1,9 @@
-<p>practice works!</p>
-<button (click)="add()">ADD TICKER</button>
+
+<canvas baseChart
+  [type]="'pie'"
+  [datasets]="pieChartDatasets"
+  [labels]="pieChartLabels"
+  [options]="pieChartOptions"
+  [plugins]="pieChartPlugins"
+  [legend]="pieChartLegend">
+</canvas>

@@ -20,23 +20,24 @@ thead th, tbody td {
 }
 
 thead th {
-  background-color: #f4f4f4; 
+  background-color: #D8EFD3; 
 }
 
 
   i.fas.fa-eye {
     cursor: pointer;
-    color: #007bff;
+    color: #96CEB4;
     font-size: 16px;
   }
   
   i.fas.fa-eye:hover {
-    color: #0056b3;
+    color: #D8EFD3;
   }
   
   p {
     font-family: 'Montserrat', sans-serif;
-    font-size: 32px;
+    font-size: 28px;
+    font-weight: bold;
   }
   
   /* Modal styles */
@@ -81,7 +82,7 @@ thead th {
   /* new-watchlist.component.css */
 
 .search-container {
-  position: relative; /* Needed for positioning the dropdown */
+  position: relative; 
 }
 
 input {
@@ -89,7 +90,7 @@ input {
   /* padding: 8px; */
   padding-top: 10px;
   padding-bottom: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid #a7a6a6;
   border-radius: 4px;
 }
 
@@ -120,4 +121,28 @@ input {
 /* Hide the dropdown if not focused */
 .dropdown-hidden {
   display: none;
+}
+
+
+
+/* Style for the button to look like a Bootstrap outline button */
+.dropdown-item button {
+  background-color: transparent; /* Transparent background */
+  color: #007bff; /* Bootstrap primary blue color for text */
+  border: 1px solid #007bff; /* Blue border */
+  padding: 8px 12px; /* Padding for a better look */
+  border-radius: 4px; /* Rounded corners */
+  font-size: 14px; /* Font size */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: all 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.dropdown-item button:hover {
+  background-color: #007bff; /* Blue background on hover */
+  color: #ffffff; /* White text on hover */
+  border: 1px solid #007bff; /* Blue border on hover */
+}
+
+.dropdown-item button:focus {
+  outline: none; /* Remove default outline on focus */
 }

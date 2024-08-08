@@ -3,7 +3,7 @@
     <div class="search-container">
       <input
         type="text"
-        placeholder="Search by long name"
+        placeholder=" Search by long name"
         (input)="onSearch2($event)"
         [(ngModel)]="searchQuery"
         (focus)="showDropdown = true"
@@ -17,7 +17,7 @@
           class="dropdown-item"
           (mousedown)="onTickerSelect(ticker.longName)"
         >
-          {{ ticker.longName }}
+          {{ ticker.longName}}  &nbsp;&nbsp;&nbsp;&nbsp;
           <!-- <i class="fas fa-plus add-icon" (click)="addTicker(ticker)" title="Add to Watchlist"></i> -->
           <button (click)="addTicker(ticker.ticker)">ADD TICKER</button>
         
