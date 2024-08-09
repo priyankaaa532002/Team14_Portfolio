@@ -64,7 +64,7 @@ export class NewWatchlistComponent implements OnInit {
   //       });
   // }
 
-  ngOnInit(): void {
+  loadData() {
     this.stockDataService.getTickers().subscribe(tickerList => {
       this.tickers = tickerList.map(t => t.ticker);
       // this.displayedTickers = [...this.tickers];  
@@ -85,6 +85,10 @@ export class NewWatchlistComponent implements OnInit {
         });
       });
     });
+  }
+
+  ngOnInit(): void {
+    this.loadData();  
   }
 
   // onTickerSelect(event:any): void {
@@ -108,6 +112,7 @@ addTicker(ticker:string): void {
       console.log('Ticker added to watchlist', response);
       // Optionally show a confirmation message or update the UI
       alert(`Ticker ${ticker} added to watchlist.`);
+      this.loadData();
     },
     error => {
       console.error('Error adding ticker to watchlist', error);
@@ -199,6 +204,7 @@ hideDropdown(): void {
         this.selectedTicker = '';
         this.showHistoricalData = { ...this.showHistoricalData };
         alert(`Ticker ${ticker} has been deleted`);
+        this.loadData();
       },
       error => {
         console.error('Error deleting ticker', error);

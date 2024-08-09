@@ -129,7 +129,7 @@ export class PracComponent implements OnInit {
       data.Open.toFixed(2),
       data.High.toFixed(2),
       data.Low.toFixed(2),
-      data.Close
+      parseFloat(data.Close.toFixed(2))
     ]);
 
     const volume = this.stockData.map(data => [

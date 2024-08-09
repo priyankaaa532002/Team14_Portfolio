@@ -4,6 +4,7 @@ import { LineChartServiceService } from './line-chart-service.service';
 import { Chart } from 'angular-highcharts';
 import * as Highcharts from 'highcharts';
 import { TransactionServiceService } from './transaction-service.service';
+import { PrserviceService } from '../practice/prservice.service';
 
 @Component({
   selector: 'app-line-chart',
@@ -21,7 +22,19 @@ export class LineChartComponent implements OnInit {
   transactions: any[] = [];
   isModalOpen: boolean = false; 
 
-  constructor(private lineChartService: LineChartServiceService, private transactionService : TransactionServiceService) {} // Inject the service
+  isShowingTransactions: boolean = true; // Toggle between transactions and pie chart
+
+  pieChartLabels: string[] = [];
+  pieChartDatasets: { data: number[] }[] = [];
+  pieChartOptions: ChartOptions<'pie'> = {
+    responsive: true,
+  };
+    
+  
+pieChartPlugins = [];
+
+public pieChartLegend = true;
+  constructor(private lineChartService: LineChartServiceService, private transactionService : TransactionServiceService, private prservice : PrserviceService) {} // Inject the service
 
   ngOnInit(): void {
     this.fetchData();
@@ -76,16 +89,31 @@ export class LineChartComponent implements OnInit {
     Highcharts.chart('container', this.chartOptions); // Render chart in HTML container
   }
 
-  openModal(): void {
-    this.transactionService.getTransactions().subscribe(
-      data => {
-        this.transactions = data;
-        this.isModalOpen = true;
-      },
-      error => {
-        console.error('Error fetching transactions:', error);
-      }
-    );
+  processPieChartData(data: any[]): void {
+    this.pieChartLabels = data.map(item => item.ticker);
+    this.pieChartDatasets = [{ data: data.map(item => item.current_holdings_price) }];
+  }
+    
+  openModal(viewType: 'transactions' | 'analytics'): void {
+    if (viewType === 'transactions') {
+      this.transactionService.getTransactions().subscribe(
+        data => {
+          this.transactions = data;
+          this.isShowingTransactions = true;
+          this.isModalOpen = true;
+        },
+        error => console.error('Error fetching transactions:', error)
+      );
+    } else if (viewType === 'analytics') {
+      this.prservice.getHoldings().subscribe(
+        data => {
+          this.processPieChartData(data);
+          this.isShowingTransactions = false;
+          this.isModalOpen = true;
+        },
+        error => console.error('Error fetching holdings:', error)
+      );
+    }
   }
 
   closeModal(): void {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { NgModule } from '@angular/core';
 import { BuySellServiceService } from './buy-sell-service.service';
 
@@ -55,6 +55,7 @@ export class BuySellComponent {
       response => {
         alert('Buy order submitted successfully!');
         this.resetForms();
+        window.location.reload();
       },
       error => {
         console.error('Error submitting buy order', error);
@@ -76,6 +77,7 @@ export class BuySellComponent {
       response => {
         alert('Sell order submitted successfully!');
         this.resetForms();
+        window.location.reload();
       },
       error => {
         console.error('Error submitting sell order', error);

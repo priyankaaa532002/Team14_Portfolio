@@ -1,4 +1,4 @@
-<div id="container">
+<!-- <div id="container">
   <highcharts-chart 
     [Highcharts]="Highcharts" 
     [options]="chartOptions" 
@@ -6,11 +6,10 @@
   </highcharts-chart>
 </div>
 <div id="'butt">
-  <button (click)="openModal()">VIEW TRANSACTIONS</button>
+  <button (click)="openModal('transactions')">VIEW TRANSACTIONS</button>
+  <button (click)="openModal('analytics')">VIEW ANALYTICS</button>
 </div>
   
-
-<!-- Modal structure -->
 <div class="modal" [ngClass]="{'show': isModalOpen}">
   <div class="modal-content">
     <span class="close" (click)="closeModal()">&times;</span>
@@ -37,5 +36,77 @@
         </tr>
       </tbody>
     </table>
+  </div>
+
+  <div *ngIf="!isShowingTransactions">
+    <h2>Analytics</h2>
+    <canvas baseChart
+      [type]="'pie'"
+      [datasets]="pieChartDatasets"
+      [labels]="pieChartLabels"
+      [options]="pieChartOptions"
+      [plugins]="pieChartPlugins"
+      [legend]="pieChartLegend">
+    </canvas>
+  </div>
+</div> -->
+
+<div id="container">
+  <highcharts-chart 
+    [Highcharts]="Highcharts" 
+    [options]="chartOptions" 
+    style="width: 100%; height: 1000px;">
+  </highcharts-chart>
+</div>
+
+<div id="butt">
+  <button (click)="openModal('transactions')">VIEW TRANSACTIONS</button>
+  <button (click)="openModal('analytics')">VIEW ANALYTICS</button>
+</div>
+
+<!-- Modal structure -->
+<div class="modal" [ngClass]="{'show': isModalOpen}">
+  <div class="modal-content">
+    <span class="close" (click)="closeModal()">&times;</span>
+    
+    <!-- Conditional content based on isShowingTransactions -->
+    <div *ngIf="isShowingTransactions">
+      <h2>Transaction Details</h2>
+      <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Last Modified</th>
+            <th>Price Per Unit</th>
+            <th>Quantity</th>
+            <th>Ticker</th>
+            <th>Transaction ID</th>
+            <th>Transaction Type</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let transaction of transactions">
+            <td>{{ transaction.last_modified }}</td>
+            <td>{{ transaction.price_per_unit }}</td>
+            <td>{{ transaction.quantity }}</td>
+            <td>{{ transaction.ticker }}</td>
+            <td>{{ transaction.trans_id }}</td>
+            <td>{{ transaction.trans_type }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    </div>
+
+    <div *ngIf="!isShowingTransactions">
+      <h2>Analytics</h2>
+      <canvas baseChart
+        [type]="'pie'"
+        [datasets]="pieChartDatasets"
+        [labels]="pieChartLabels"
+        [options]="pieChartOptions"
+        [legend]="pieChartLegend">
+      </canvas>
+    </div>
   </div>
 </div>
