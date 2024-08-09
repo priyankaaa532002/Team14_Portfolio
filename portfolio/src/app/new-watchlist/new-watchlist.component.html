@@ -40,6 +40,7 @@
           <th style="color: white; background-color: #1A4870;">52 WEEK CHANGE</th>
          
           <th style="color: white; background-color: #1A4870;"></th>
+          <th style="color: white; background-color: #1A4870;"></th>
         </tr>
       </thead>
       <tbody>
@@ -56,6 +57,9 @@
             {{ tickerInfos[ticker]['info']["52WeekChange"] | percent:'1.0-2' || 'N/A' }}</td>
           <td>
             <i class="fas fa-eye" (click)="openModal(ticker)" [title]="showHistoricalData[ticker] ? 'Hide Chart' : 'View Chart'"></i>
+          </td>
+          <td>
+            <i class="fas fa-trash" (click)="deleteTicker(ticker)" title="Delete Ticker"></i>
           </td>
         </tr>
       </tbody>

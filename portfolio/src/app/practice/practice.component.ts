@@ -30,6 +30,6 @@ export class PracticeComponent implements OnInit{
   processData(data: any[]): void {
     // Extract tickers and quantities
     this.pieChartLabels = data.map(item => item.ticker);
-    this.pieChartDatasets = [{ data: data.map(item => item.quantity) }];
+    this.pieChartDatasets = [{ data: data.map(item => item.current_holdings_price) }];
   }
 }

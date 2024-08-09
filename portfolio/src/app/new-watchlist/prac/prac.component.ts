@@ -126,9 +126,9 @@ export class PracComponent implements OnInit {
 
     const ohlc = this.stockData.map(data => [
       new Date(data.Date).getTime(), // Convert Date to timestamp
-      data.Open,
-      data.High,
-      data.Low,
+      data.Open.toFixed(2),
+      data.High.toFixed(2),
+      data.Low.toFixed(2),
       data.Close
     ]);
 

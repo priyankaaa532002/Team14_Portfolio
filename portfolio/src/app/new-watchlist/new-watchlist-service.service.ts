@@ -42,6 +42,7 @@ export class NewWatchlistServiceService {
   private tickersPost = 'http://localhost:5000/watchlist/put';
   private tickerInfoUrl = 'http://localhost:5000/actions/get_ticker';
   private searchUrl = 'http://localhost:5000/actions/search_ticker';
+  private deleteUrl = 'http://localhost:5000/watchlist/del';
 
   constructor(private http: HttpClient) { }
 
@@ -77,5 +78,9 @@ export class NewWatchlistServiceService {
     const url = this.tickersPost;
     // console.log(data);
     return this.http.post<any>(url,data);
+  }
+
+  deleteTicker(ticker: string): Observable<any> {
+    return this.http.delete<any>(`${this.deleteUrl}/${ticker}`);
   }
 }

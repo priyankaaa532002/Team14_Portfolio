@@ -184,4 +184,26 @@ hideDropdown(): void {
       this.selectedTicker = ticker;
     });
   }
+
+  deleteTicker(ticker: string): void {
+    console.log("HELLO");
+    this.stockDataService.deleteTicker(ticker).subscribe(
+      response => {
+        console.log('Ticker deleted successfully', response);
+        // Remove the ticker from the local list
+        this.tickers = this.tickers.filter(t => t !== ticker);
+        delete this.stockData[ticker];
+        delete this.recentData[ticker];
+        delete this.showHistoricalData[ticker];
+        delete this.tickerInfos[ticker];
+        this.selectedTicker = '';
+        this.showHistoricalData = { ...this.showHistoricalData };
+        alert(`Ticker ${ticker} has been deleted`);
+      },
+      error => {
+        console.error('Error deleting ticker', error);
+        alert('Failed to delete');
+      }
+    );
+  }
 }

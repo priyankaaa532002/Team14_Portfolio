@@ -6,35 +6,28 @@
   margin-top: 20px;
 }
 
-.btn-success {
-  background-color: #238636;
-  color: #ffffff;
+button {
+  background-color: transparent; 
+  color: #1A4870; 
+  border: 2px solid #1A4870; /* Blue border */
+  padding: 8px 12px; 
+  border-radius: 4px; /* Rounded corners */
+  font-size: 14px; /* Font size */
   font-weight: bold;
-  border: none;
-  border-radius: 5px;
-  border-color: #1A4D2E;
-  padding: 10px 20px;
-  cursor: pointer;
+  cursor: pointer; 
+  transition: all 0.3s ease; 
+  width: 150px;
 }
 
-.btn-danger {
-  background-color: red;
-  color: #ffffff;
-  font-weight: bold;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  cursor: pointer;
+button:hover {
+  background-color: #1A4870; /* Blue background on hover */
+  color: #ffffff; /* White text on hover */
+  border: 1px solid #1A4870; /* Blue border on hover */
 }
 
-.btn-success:hover {
-  background-color: darkgreen;
+button:focus {
+  outline: none; /* Remove default outline on focus */
 }
-
-.btn-danger:hover {
-  background-color: darkred;
-}
-
 /* Modal styles */
 .modal {
   display: flex;

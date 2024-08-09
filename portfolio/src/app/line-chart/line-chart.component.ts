@@ -3,6 +3,7 @@ import { ChartConfiguration, ChartOptions, ChartType } from 'chart.js';
 import { LineChartServiceService } from './line-chart-service.service';
 import { Chart } from 'angular-highcharts';
 import * as Highcharts from 'highcharts';
+import { TransactionServiceService } from './transaction-service.service';
 
 @Component({
   selector: 'app-line-chart',
@@ -17,7 +18,10 @@ export class LineChartComponent implements OnInit {
   data1: number[] = [];
   categories: string[] = [];
 
-  constructor(private lineChartService: LineChartServiceService) {} // Inject the service
+  transactions: any[] = [];
+  isModalOpen: boolean = false; 
+
+  constructor(private lineChartService: LineChartServiceService, private transactionService : TransactionServiceService) {} // Inject the service
 
   ngOnInit(): void {
     this.fetchData();
@@ -43,19 +47,19 @@ export class LineChartComponent implements OnInit {
             type: 'line'
           },
           title: {
-            text: 'Monthly Site Visitors'
+            text: ''
           },
           xAxis: {
             categories: this.categories
           },
           yAxis: {
             title: {
-              text: 'Visitors'
+              text: ''
             }
           },
           series: [
             {
-              name: 'Cumulative Values',
+              name: '',
               type: 'line',
               data: this.data1
             }
@@ -70,6 +74,22 @@ export class LineChartComponent implements OnInit {
   }
   renderChart() {
     Highcharts.chart('container', this.chartOptions); // Render chart in HTML container
+  }
+
+  openModal(): void {
+    this.transactionService.getTransactions().subscribe(
+      data => {
+        this.transactions = data;
+        this.isModalOpen = true;
+      },
+      error => {
+        console.error('Error fetching transactions:', error);
+      }
+    );
+  }
+
+  closeModal(): void {
+    this.isModalOpen = false;
   }
 }
   

@@ -38,6 +38,12 @@ thead th {
   i.fas.fa-eye:hover {
     color: #D8EFD3;
   }
+
+  .fas.fa-trash {
+    color: rgb(233, 182, 182); /* Style for the trash icon */
+    cursor: pointer;
+    margin-left: 10px; /* Space between icons */
+  }
   
   p {
     font-family: "Roboto", sans-serif;
@@ -146,9 +152,9 @@ input {
 }
 
 .dropdown-item button:hover {
-  background-color: #007bff; /* Blue background on hover */
+  background-color: #1A4870; /* Blue background on hover */
   color: #ffffff; /* White text on hover */
-  border: 1px solid #007bff; /* Blue border on hover */
+  border: 1px solid #1A4870; /* Blue border on hover */
 }
 
 .dropdown-item button:focus {
