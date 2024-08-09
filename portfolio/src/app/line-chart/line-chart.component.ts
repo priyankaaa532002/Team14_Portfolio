@@ -6,6 +6,19 @@ import * as Highcharts from 'highcharts';
 import { TransactionServiceService } from './transaction-service.service';
 import { PrserviceService } from '../practice/prservice.service';
 
+const BG_COLOR = [
+  '#03346E',
+  '#6EACDA',
+  '#68D2E8',
+  '#0F67B1',
+  '#BBE9FF',
+  '#0F67B1',
+  '#1679AB',
+  '#3DC2EC',
+  '#4B70F5',
+  '#3572EF',
+  '#0000FF', '#0000CD', '#00008B', '#4169E1', '#4682B4', '#5F9EA0', '#6495ED', '#00BFFF', '#1E90FF', '#87CEFA', '#ADD8E6', '#B0E0E6', '#AFEEEE', '#00CED1', '#20B2AA', '#48D1CC', '#00FFFF', '#00FA9A', '#00FF7F', '#7CFC00', '#32CD32', '#228B22', '#006400', '#2E8B57', '#3CB371', '#9ACD32'
+]
 @Component({
   selector: 'app-line-chart',
   templateUrl: './line-chart.component.html',
@@ -20,21 +33,21 @@ export class LineChartComponent implements OnInit {
   categories: string[] = [];
 
   transactions: any[] = [];
-  isModalOpen: boolean = false; 
+  isModalOpen: boolean = false;
 
   isShowingTransactions: boolean = true; // Toggle between transactions and pie chart
 
   pieChartLabels: string[] = [];
-  pieChartDatasets: { data: number[] }[] = [];
+  pieChartDatasets: { data: number[], backgroundColor: string[] }[] = [];
   pieChartOptions: ChartOptions<'pie'> = {
     responsive: true,
   };
-    
-  
-pieChartPlugins = [];
 
-public pieChartLegend = true;
-  constructor(private lineChartService: LineChartServiceService, private transactionService : TransactionServiceService, private prservice : PrserviceService) {} // Inject the service
+
+  pieChartPlugins = [];
+
+  public pieChartLegend = true;
+  constructor(private lineChartService: LineChartServiceService, private transactionService: TransactionServiceService, private prservice: PrserviceService) { } // Inject the service
 
   ngOnInit(): void {
     this.fetchData();
@@ -91,9 +104,14 @@ public pieChartLegend = true;
 
   processPieChartData(data: any[]): void {
     this.pieChartLabels = data.map(item => item.ticker);
-    this.pieChartDatasets = [{ data: data.map(item => item.current_holdings_price) }];
+    this.pieChartDatasets = [{
+      data: data.map(item => item.current_holdings_price),
+      backgroundColor: BG_COLOR
+    }];
+
+    console.log(data.map((x, i) => [x.ticker, BG_COLOR[i]]))
   }
-    
+
   openModal(viewType: 'transactions' | 'analytics'): void {
     if (viewType === 'transactions') {
       this.transactionService.getTransactions().subscribe(
@@ -120,4 +138,4 @@ public pieChartLegend = true;
     this.isModalOpen = false;
   }
 }
-  
+

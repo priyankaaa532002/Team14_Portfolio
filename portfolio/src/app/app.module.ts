@@ -17,6 +17,7 @@ import { BaseChartDirective } from 'ng2-charts';
 import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
 import { LineChartComponent } from './line-chart/line-chart.component';
 import { NewsComponent } from './news/news.component';
+import { HeaderComponent } from './header/header.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { NewsComponent } from './news/news.component';
     NetworthComponent,
     PracticeComponent,
     LineChartComponent,
-    NewsComponent
+    NewsComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
