@@ -16,6 +16,7 @@ import { PracticeComponent } from './practice/practice.component';
 import { BaseChartDirective } from 'ng2-charts';
 import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
 import { LineChartComponent } from './line-chart/line-chart.component';
+import { NewsComponent } from './news/news.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { LineChartComponent } from './line-chart/line-chart.component';
     BuySellComponent,
     NetworthComponent,
     PracticeComponent,
-    LineChartComponent
+    LineChartComponent,
+    NewsComponent
   ],
   imports: [
     BrowserModule,

@@ -3,6 +3,10 @@ div {
   padding: 0;
 }
 
+.parent{
+  padding-left: 25px;
+}
+
 .table-container {
   max-height: 77vh; 
   overflow-y: auto; 
@@ -16,7 +20,8 @@ table {
 
 thead th, tbody td {
   padding: 8px; 
-  border-bottom: 1px solid #ddd; 
+  /* border-collapse: collapse;
+  border-bottom: 1px solid #ddd;  */
 }
 
 thead th {
@@ -35,9 +40,10 @@ thead th {
   }
   
   p {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 28px;
-    font-weight: bold;
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-size: 25px;
+    font-style: normal;
   }
   
   /* Modal styles */
@@ -83,6 +89,8 @@ thead th {
 
 .search-container {
   position: relative; 
+  width: 95%;
+  padding-bottom: 20px;
 }
 
 input {
@@ -128,8 +136,8 @@ input {
 /* Style for the button to look like a Bootstrap outline button */
 .dropdown-item button {
   background-color: transparent; /* Transparent background */
-  color: #007bff; /* Bootstrap primary blue color for text */
-  border: 1px solid #007bff; /* Blue border */
+  color: #1A4870; /* Bootstrap primary blue color for text */
+  border: 1px solid #1A4870; /* Blue border */
   padding: 8px 12px; /* Padding for a better look */
   border-radius: 4px; /* Rounded corners */
   font-size: 14px; /* Font size */

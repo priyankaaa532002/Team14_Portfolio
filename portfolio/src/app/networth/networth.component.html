@@ -1,10 +1,14 @@
-<div>
-    <h1>Net Worth</h1>
+<div class="parent2">
+    <p id="main">Portfolio Performance</p>
     <div *ngIf="networth">
-      <p>Net Worth: {{ networth | json }}</p>
+      <p class="content">Net Worth: $ 
+        <span>
+          {{ networth | json | number:'1.2-2'}}
+        </span>
+      </p>
     </div>
     <div *ngIf="!networth">
-      <p>Loading net worth...</p>
+      <p class="content">Loading net worth...</p>
     </div>
   </div>
   

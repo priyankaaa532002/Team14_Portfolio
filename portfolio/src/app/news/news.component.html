@@ -1,0 +1,13 @@
+<div>
+<p>Trending News</p>
+<div class="news-container">
+  <div *ngIf="newsItems.length > 0; else noData">
+    <div class="news-item" *ngFor="let item of newsItems">
+      <a class="news-link" [href]="item.link" target="_blank">{{ item.title }}</a>
+    </div>
+  </div>
+  <ng-template #noData>
+    <p>No news available.</p>
+  </ng-template>
+</div>
+</div>

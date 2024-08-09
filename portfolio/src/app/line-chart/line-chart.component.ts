@@ -10,42 +10,6 @@ import * as Highcharts from 'highcharts';
   styleUrl: './line-chart.component.css'
 })
 export class LineChartComponent implements OnInit {
-//   Highcharts: typeof Highcharts=Highcharts;
-//   ngOnInit(): void {
-//     throw new Error('Method not implemented.');
-//   }
-  
-//   data1 = [-500, -700, -555];
-//   name1= "ItSolutionStuff.com";
-
-//   chartOptions: Highcharts.Options = {
-//     title: {
-//       text: "Monthly Site Visitor"
-//     },
-//     xAxis: {
-//       categories: [
-//         "Jan",
-//         "Feb",
-//         "Mar"
-//       ]
-//     },
-//     yAxis: {
-//       title: {
-//         text: "Visitors"
-//       }
-//     },
-//     series: [
-//       {
-//         name: this.name1,
-//         type: "spline",
-//         data: this.data1
-//       },
-    
-//     ]
-//   };
-// }
-
-
 
   Highcharts: typeof Highcharts = Highcharts;
   chartOptions: Highcharts.Options = {}; // Initialize chartOptions as an empty object

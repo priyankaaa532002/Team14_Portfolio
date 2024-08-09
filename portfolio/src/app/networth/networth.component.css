@@ -1,0 +1,18 @@
+#main{
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-size: 25px;
+    font-style: normal;
+  }
+
+  .content{
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-size: 25px;
+    font-style: normal;
+    color: #1A4870;
+  }
+
+  .parent2{
+    padding-left: 50px;
+  }

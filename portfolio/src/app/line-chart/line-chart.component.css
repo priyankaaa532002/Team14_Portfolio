@@ -1,3 +1,7 @@
 .dotted {
     stroke-dasharray: 2;
   }
+
+#container{
+  width: 700px;
+}

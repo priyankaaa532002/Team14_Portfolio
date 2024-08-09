@@ -1,4 +1,4 @@
-  <div>
+  <div class="parent">
     <p>Watchlist</p>
     <div class="search-container">
       <input
@@ -28,33 +28,32 @@
     <table>
       <thead>
         <tr>
-          <th>Ticker</th>
-          <th>Long Name</th>
-          <th>Current Price</th>
+          <th style="color: white; background-color: #1A4870;">TICKER</th>
+          <th style="color: white; background-color: #1A4870;">LONG NAME</th>
+          <th style="color: white; background-color: #1A4870;;">CURRENT PRICE</th>
           <!-- <th>Date</th> -->
-          <th>Open</th>
-          <th>High</th>
-          <th>Low</th>
-          <th>Close</th>
+          <th style="color: white; background-color: #1A4870;">OPEN</th>
+          <!-- <th>High</th> -->
+          <!-- <th>Low</th> -->
+          <th style="color: white; background-color: #1A4870;">CLOSE</th>
           
-          <th>52 Week Change</th>
+          <th style="color: white; background-color: #1A4870;">52 WEEK CHANGE</th>
          
-          <th></th>
+          <th style="color: white; background-color: #1A4870;"></th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let ticker of tickers">
-          <td>{{ ticker }}</td>
+          <b><td style="color: #1A4870;">{{ ticker }}</td></b>
           <!-- <td>{{ recentData[ticker]?.Date | date:'dd MMM yyyy' }}</td> -->
-          <td>{{ tickerInfos[ticker]['info']['longName'] || 'N/A' }}</td>
+          <td style="color: #1A4870;">{{ tickerInfos[ticker]['info']['longName'] || 'N/A' }}</td>
           <td>{{ tickerInfos[ticker]['info']['currentPrice'] | currency:'USD' || 'N/A' }}</td>
           <td>{{ recentData[ticker]?.Open | number:'1.2-2' }}</td>
-          <td>{{ recentData[ticker]?.High | number:'1.2-2' }}</td>
-          <td>{{ recentData[ticker]?.Low | number:'1.2-2' }}</td>
+          <!-- <td>{{ recentData[ticker]?.High | number:'1.2-2' }}</td> -->
+          <!-- <td>{{ recentData[ticker]?.Low | number:'1.2-2' }}</td> -->
           <td>{{ recentData[ticker]?.Close | number:'1.2-2' }}</td>
-         
-          <td >{{ tickerInfos[ticker]['info']["52WeekChange"] | percent:'1.0-2' || 'N/A' }}</td>
-          
+          <td [style.color]="tickerInfos[ticker]['info']['52WeekChange'] > 0 ? 'green' : (tickerInfos[ticker]['info']['52WeekChange'] < 0 ? 'red' : 'black')">
+            {{ tickerInfos[ticker]['info']["52WeekChange"] | percent:'1.0-2' || 'N/A' }}</td>
           <td>
             <i class="fas fa-eye" (click)="openModal(ticker)" [title]="showHistoricalData[ticker] ? 'Hide Chart' : 'View Chart'"></i>
           </td>

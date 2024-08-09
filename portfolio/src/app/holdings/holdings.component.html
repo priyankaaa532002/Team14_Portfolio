@@ -3,18 +3,21 @@
     <table>
       <thead>
         <tr>
-          <th>Holding ID</th>
-          <th>Ticker</th>
-          <th>Quantity</th>
-          <th>Price</th>
+          <!-- <th>Holding ID</th> -->
+          <th style="color: white; background-color: #1A4870;">TICKER</th>
+          <th style="color: white; background-color: #1A4870;">QUANTITY</th>
+          <th style="color: white; background-color: #1A4870;">PRICE</th>
+          <th style="color: white; background-color: #1A4870;">% CHANGE</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let holding of holdings">
-          <td>{{ holding.holding_id }}</td>
-          <td>{{ holding.ticker }}</td>
+          <!-- <td>{{ holding.holding_id }}</td> -->
+          <b><td style="color: #1A4870;">{{ holding.ticker }}</td></b>
           <td>{{ holding.quantity }}</td>
           <td>{{ holding.price | currency }}</td>
+          <b><td [style.color]="holding.percent_change > 0 ? 'green' : (holding.percent_change < 0 ? 'red' : 'black')">
+            {{holding.percent_change | number:'1.2-2'}}</td></b>
         </tr>
       </tbody>
     </table>

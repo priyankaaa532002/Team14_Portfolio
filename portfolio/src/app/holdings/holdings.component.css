@@ -1,45 +1,57 @@
 /* holdings.component.css */
 .ng-container {
-    font-family: 'Montserrat', sans-serif;
-    padding: 20px;
-  }
-  
-  table.holdings-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-  }
+  font-family: "Roboto", sans-serif;
+}
 
-  p {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 32px;
-  }
-  
-  th, td {
-    padding: 10px 20px; /* Add enough space between columns */
-    text-align: left;
-    border: none; /* Remove borders */
-  }
-  
-  th {
-    background-color: #f2f2f2; /* Light background for headers */
-    font-weight: bold;
-  }
-  
-  td {
-    background-color: #fff; /* White background for cells */
-  }
-  
-  tr:nth-child(even) td {
-    background-color: #f9f9f9; /* Slightly different background for even rows */
-  }
-  
-  h1 {
-    font-family: 'Montserrat', sans-serif;
-    margin-bottom: 10px;
-  }
-  
-  .btn {
-    margin-bottom: 20px;
-  }
-  
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+p {
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-size: 25px;
+  font-style: normal;
+}
+
+/* Table container */
+.table-container {
+  max-height: 77vh;
+  overflow-y: auto;
+  display: block;
+}
+
+/* Table styling */
+table {
+  width: 70%;
+  border-collapse: collapse;
+}
+
+thead th, tbody td {
+  padding: 8px 20px; /* Add space between columns */
+  text-align: left;
+}
+
+thead th {
+  background-color: #1A4870; /* Blue background for headers */
+  color: white; /* White text color */
+}
+
+tbody td {
+  background-color: #fff; /* White background for cells */
+}
+
+tr:nth-child(even) td {
+  background-color: #f9f9f9; /* Slightly different background for even rows */
+}
+
+
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
