@@ -17,7 +17,7 @@ p {
   border-bottom: 1px solid #ddd; /* Thin grey line separating items */
   padding-top: 4px;
   padding-bottom: 4px;
-  text-align: justify;
+  
 }
 
 .news-item:last-child {

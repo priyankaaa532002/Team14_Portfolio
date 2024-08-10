@@ -9,6 +9,9 @@ import { HoldingServiceService } from './holding-service.service';
 
 export class HoldingsComponent implements OnInit {
   holdings: any[] = [];
+  transactions: any[] = [];
+  selectedTicker: string = '';
+  isModalOpen: boolean = false;
 
   constructor(private holdingService: HoldingServiceService) {}
 
@@ -20,5 +23,22 @@ export class HoldingsComponent implements OnInit {
     this.holdingService.getHoldings().subscribe((holdings: any[]) => {
       this.holdings = holdings;
     });
+  }
+
+
+  onRowClick(ticker: string): void {
+    this.selectedTicker = ticker;
+    this.isModalOpen = true;
+    this.loadTransactions(ticker);
+  }
+
+  loadTransactions(ticker: string): void {
+    this.holdingService.getTransactionsByTicker(ticker).subscribe((transactions: any[]) => {
+      this.transactions = transactions;
+    });
+  }
+
+  closeModal(): void {
+    this.isModalOpen = false;
   }
 }

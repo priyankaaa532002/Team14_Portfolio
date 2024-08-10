@@ -11,7 +11,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let holding of holdings">
+        <tr *ngFor="let holding of holdings"  (click)="onRowClick(holding.ticker)">
           <!-- <td>{{ holding.holding_id }}</td> -->
           <b><td style="color: #1A4870;">{{ holding.ticker }}</td></b>
           <td>{{ holding.quantity }}</td>
@@ -21,4 +21,32 @@
         </tr>
       </tbody>
     </table>
+  </div>
+  <div class="modal" [ngClass]="{'show': isModalOpen}">
+    <div class="modal-content">
+      <span class="close" (click)="closeModal()">&times;</span>
+      <h2>Transaction Details for {{ selectedTicker }}</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Last Modified</th>
+            <th>Price Per Unit</th>
+            <th>Quantity</th>
+            <th>Ticker</th>
+            <th>Transaction ID</th>
+            <th>Transaction Type</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let transaction of transactions">
+            <td>{{ transaction.last_modified }}</td>
+            <td>{{ transaction.price_per_unit }}</td>
+            <td>{{ transaction.quantity }}</td>
+            <td>{{ transaction.ticker }}</td>
+            <td>{{ transaction.trans_id }}</td>
+            <td>{{ transaction.trans_type }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
